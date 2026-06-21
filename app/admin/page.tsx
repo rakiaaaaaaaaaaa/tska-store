@@ -1,23 +1,36 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AdminDashboard from '@/app/components/admin/AdminDashboard';
-
-const ADMIN_PASSWORD = 'tska2026';
 
 export default function AdminPage() {
   const [password, setPassword] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [error, setError] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetch('/api/admin/session')
+      .then((res) => res.json())
+      .then((data) => setAuthenticated(data.authenticated))
+      .finally(() => setCheckingSession(false));
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    if (res.ok) {
       setAuthenticated(true);
     } else {
       setError(true);
       setTimeout(() => setError(false), 2000);
     }
   };
+
+  if (checkingSession) return null;
 
   if (authenticated) return <AdminDashboard />;
 

@@ -102,7 +102,14 @@ export const useProductStore = create<ProductStore>()(
 
       addOrder: (order) => {
         set((s) => ({ orders: [...s.orders, order] }));
-        syncToServer(get());
+        // Customers placing an order aren't logged into the admin session,
+        // so this goes through the public /api/orders endpoint instead of
+        // the admin-protected /api/store PUT used by the other actions.
+        fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(order),
+        }).catch(() => {});
       },
 
       updateOrderStatus: (id, status) => {
