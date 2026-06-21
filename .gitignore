@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# file-based "database" (admin catalog/orders) - runtime data, not source
+/data/store.json
+
 # vercel
 .vercel
 
