@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useProductStore } from '@/store/useProductStore';
 import { useToast } from '@/app/components/ui/Toast';
+import { Order } from '@/types';
 
 export default function AdminOrderList() {
   const { orders, updateOrderStatus, deleteOrder } = useProductStore();
@@ -10,7 +11,7 @@ export default function AdminOrderList() {
 
   const filteredOrders = statusFilter ? orders.filter((o) => o.status === statusFilter) : orders;
 
-  const handleStatusChange = (orderId: string, newStatus: any) => {
+  const handleStatusChange = (orderId: string, newStatus: Order['status']) => {
     updateOrderStatus(orderId, newStatus);
     show('Statut de la commande mis à jour', 'success');
   };
@@ -85,7 +86,7 @@ export default function AdminOrderList() {
                   <td className="px-4 py-3">
                     <select
                       value={order.status}
-                      onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                      onChange={(e) => handleStatusChange(order.id, e.target.value as Order['status'])}
                       className="text-xs font-ui px-2 py-1 rounded border border-brand-line focus:outline-none focus:border-brand-primary"
                     >
                       <option value="Pending">En attente</option>

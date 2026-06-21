@@ -82,7 +82,7 @@ export default function CheckoutPage() {
       show('Commande passée avec succès !', 'success');
 
       router.push(`/order-confirmation/${orderId}`);
-    } catch (error) {
+    } catch {
       show('Une erreur s\'est produite. Essaie à nouveau.', 'error');
       setIsSubmitting(false);
     }

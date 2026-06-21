@@ -41,7 +41,7 @@ export default function AdminCategoryManager() {
       </form>
 
       <div className="bg-white border border-brand-line rounded-2xl overflow-hidden">
-        {categories.map((cat, i) => (
+        {categories.map((cat) => (
           <div
             key={cat.id}
             className="flex items-center gap-4 px-5 py-4 border-b border-brand-line last:border-0 hover:bg-brand-pale/50"

@@ -10,7 +10,7 @@ export default function MyOrdersPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 text-center">
         <h1 className="font-display text-4xl font-semibold text-brand-ink mb-4">Aucune commande</h1>
-        <p className="text-brand-muted mb-8">Tu n\'as pas encore passé de commande.</p>
+        <p className="text-brand-muted mb-8">Tu n&apos;as pas encore passé de commande.</p>
         <Link href="/shop" className="btn-primary">
           Commencer à acheter
         </Link>

@@ -193,7 +193,7 @@ export default function ProductDetail({ product }: { product: Product }) {
             </ul>
           )}
           {activeTab === 'Avis' && (
-            <p className="text-brand-muted font-ui text-sm">Pas d'avis pour le moment. Sois le premier à en laisser un!</p>
+            <p className="text-brand-muted font-ui text-sm">Pas d&apos;avis pour le moment. Sois le premier à en laisser un!</p>
           )}
         </div>
       </div>

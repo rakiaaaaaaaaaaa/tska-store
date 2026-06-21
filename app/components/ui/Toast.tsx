@@ -1,6 +1,5 @@
 'use client';
 import { create } from 'zustand';
-import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Toast {
